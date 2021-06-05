@@ -7,70 +7,80 @@ using MVC_Start.Models;
 
 namespace MVC_Start.Controllers
 {
-  public class HomeController : Controller
-  {
-    public IActionResult Index(int id)
-    {
-      return View();
-    }
+	public class HomeController : Controller
+	{
+		public IActionResult Index(int id)
+		{
+			return View();
+		}
 
-    public IActionResult IndexWithLayout()
-    {
-      return View();
-    }
+		public IActionResult IndexWithLayout()
+		{
+			return View();
+		}
 
-    public IActionResult Contact()
-    {
-      GuestContact contact = new GuestContact();
+		public IActionResult Demo()
+		{
+			return View();
+		}
 
-      contact.Name = "Manish Agrawal";
-      contact.Email = "magrawal@usf.edu";
-      contact.Phone = "813-974-6716";
+		public IActionResult Nels()
+		{
+			return View();
+		}
 
-      
-      /* alternate syntax to initialize object 
-      GuestContact contact2 = new GuestContact
-      {
-        Name = "Manish Agrawal",
-        Email = "magrawal@usf.edu",
-        Phone = "813-974-6716"
-      };
-      */
+		public IActionResult Contact()
+		{
+			GuestContact contact = new GuestContact();
 
-      //ViewData["Message"] = "Your contact page.";
+			contact.Name = "Manish Agrawal";
+			contact.Email = "magrawal@usf.edu";
+			contact.Phone = "813-974-6716";
 
-      return View(contact);
-    }
 
-    [HttpPost]
-    public IActionResult Contact(GuestContact contact)
-    {
-      return View(contact);
-    }
+			/* alternate syntax to initialize object 
+			GuestContact contact2 = new GuestContact
+			{
+			  Name = "Manish Agrawal",
+			  Email = "magrawal@usf.edu",
+			  Phone = "813-974-6716"
+			};
+			*/
 
-    /// <summary>
-    /// Replicate the chart example in the JavaScript presentation
-    /// 
-    /// Typically LINQ and SQL return data as collections.
-    /// Hence we start the example by creating collections representing the x-axis labels and the y-axis values
-    /// However, chart.js expects data as a string, not as a collection.
-    ///   Hence we join the elements in the collections into strings in the view model
-    /// </summary>
-    /// <returns>View that will display the chart</returns>
-    public ViewResult DemoChart()
-    {
-      string[] ChartLabels = new string[] { "Africa", "Asia", "Europe", "Latin America", "North America" };
-      int[] ChartData = new int[] { 2478, 5267, 734, 784, 433 };
+			//ViewData["Message"] = "Your contact page.";
 
-      ChartModel Model = new ChartModel
-      {
-        ChartType = "bar",
-        Labels = String.Join(",", ChartLabels.Select(d => "'" + d + "'")),
-        Data = String.Join(",", ChartData.Select(d => d)),
-        Title = "Predicted world population (millions) in 2050"
-      };
+			return View(contact);
+		}
 
-      return View(Model);
-    }
-  }
+		[HttpPost]
+		public IActionResult Contact(GuestContact contact)
+		{
+			return View(contact);
+		}
+
+		/// <summary>
+		/// Replicate the chart example in the JavaScript presentation
+		/// 
+		/// Typically LINQ and SQL return data as collections.
+		/// Hence we start the example by creating collections representing the x-axis labels and the y-axis values
+		/// However, chart.js expects data as a string, not as a collection.
+		///   Hence we join the elements in the collections into strings in the view model
+		/// </summary>
+		/// <returns>View that will display the chart</returns>
+		public ViewResult DemoChart()
+		{
+			string[] ChartLabels = new string[] { "Africa", "Asia", "Europe", "Latin America", "North America" };
+			int[] ChartData = new int[] { 2478, 5267, 734, 784, 433 };
+
+			ChartModel Model = new ChartModel
+			{
+				ChartType = "bar",
+				Labels = String.Join(",", ChartLabels.Select(d => "'" + d + "'")),
+				Data = String.Join(",", ChartData.Select(d => d)),
+				Title = "Predicted world population (millions) in 2050"
+			};
+
+			return View(Model);
+		}
+	}
 }
