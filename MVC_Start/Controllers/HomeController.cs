@@ -82,5 +82,20 @@ namespace MVC_Start.Controllers
 
 			return View(Model);
 		}
+		public ViewResult DemoChart2()
+		{
+			string[] ChartLabels2 = new string[] { "Africa", "Asia", "Europe", "Latin America", "North America" };
+			int[] ChartData2 = new int[] { 2478, 5267, 734, 784, 433 };
+
+			ChartModel Model2 = new ChartModel
+			{
+				ChartType = "pie",
+				Labels = String.Join(",", ChartLabels2.Select(d => "'" + d + "'")),
+				Data = String.Join(",", ChartData2.Select(d => d)),
+				Title = "Predicted world population (millions) in 2050"
+			};
+
+			return View(Model2);
+		}
 	}
 }
